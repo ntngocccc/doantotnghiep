@@ -60,13 +60,14 @@
                 android:id="@+id/btnEdit"
                 android:src="@drawable/edit_thanh_vien"
                 android:padding="8dp"/>
+
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:layout_marginLeft="8dp"
                 android:id="@+id/btnDelete"
-                android:src="@drawable/remove_thanh_vien"/>
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:padding="8dp"
+                android:src="@drawable/remove_thanh_vien" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

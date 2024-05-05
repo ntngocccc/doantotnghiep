@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -83,6 +84,7 @@ public class DatVeViewModel extends BaseObservable {
             String date = VariableGlobal.dateFormat.format(new Date());
             DatVe datVe = new DatVe(thanhVien.getId(), chuyenXe.getIdChuyenXe(),Integer.parseInt(getSoLuongVe()),date,getNgayDi(), getNgayVe(),null,1);
 
+            Log.d("TAGa", "luuDatVe: "+datVe.getId());
             datVeDAO.insert(datVe);
             scheduleUpdateStatus(context, datVe.getId());
 
@@ -128,7 +130,7 @@ public class DatVeViewModel extends BaseObservable {
         };
 
         // Schedule the runnable to run after 1 minute (60000 milliseconds)
-        handler.postDelayed(updateStatusRunnable, 60000);
+        handler.postDelayed(updateStatusRunnable, 600000);
     }
 
 

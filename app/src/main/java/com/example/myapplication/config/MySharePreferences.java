@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class MySharePreferences {
-    private static final String SHARE_PREFERENCE_DATVE = "SHARE_PREFERENCE_DATVE";
+    private static final String SHARE_PREFERENCE_DATVE = "SHARE_PREFERENCE_DATVE_1";
     private Context context;
     public MySharePreferences(Context context){
         this.context = context;

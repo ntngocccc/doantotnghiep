@@ -1,6 +1,7 @@
 package com.example.myapplication.config;
 
 import android.content.Context;
+import android.util.Log;
 
 public class DataLocalManager {
 
@@ -51,7 +52,6 @@ public class DataLocalManager {
     }
     public static void setNameUser(String name){
         DataLocalManager.getInstance().mySharePreferences.putStringValue(USER_NAME,name);
-
     }
     public static String getNameUser(){
         return DataLocalManager.getInstance().mySharePreferences.getStringValue(USER_NAME);

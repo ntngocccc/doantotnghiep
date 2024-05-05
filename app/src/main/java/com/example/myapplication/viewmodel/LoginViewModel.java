@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ import com.example.myapplication.model.ThanhVien;
 import com.example.myapplication.view.AdminManagerActivity;
 import com.example.myapplication.view.LoginActivity;
 import com.example.myapplication.view.UserManagerActivity;
+
+import java.util.List;
 
 
 public class LoginViewModel extends BaseObservable {

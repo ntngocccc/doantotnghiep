@@ -1,5 +1,7 @@
 package com.example.myapplication.config;
 
+import android.util.Log;
+
 public class SoLuongVeDaTaoSingleton {
     private static SoLuongVeDaTaoSingleton instance;
     private int soLuongVeDaTao;

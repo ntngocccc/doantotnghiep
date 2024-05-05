@@ -19,7 +19,6 @@ public class MainViewModel extends BaseObservable {
         if (DataLocalManager.getIsLogin()){
             ThanhVienDAO thanhVienDAO = AppDatabase.getInstance(context).getThanhVienDAO();
             ThanhVien thanhVien =  thanhVienDAO.getThanhVienByUserName(DataLocalManager.getNameUser());
-            Log.d("TAGa", "checkLogin: " + thanhVien.toString());
             chuyenTrangTheoQuyen(thanhVien.getIdQuyenThanhVien(), context);
 
         }

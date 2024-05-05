@@ -9,6 +9,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -91,9 +92,15 @@ public class LoaiXeAdapter extends RecyclerView.Adapter<LoaiXeAdapter.LoaiXeHold
         builder.setTitle("Xác nhận xóa");
         builder.setMessage("Bạn có muốn xóa loại xe này");
         builder.setPositiveButton("Đồng ý",(dialogInterface, i) -> {
-           loaixes.remove(posiotion);
-            AppDatabase.getInstance(context).getLoaiXeDAO().delete(loaiXe);
-            notifyDataSetChanged(); // cập nhật giao diện sao khi xóa
+            List<ChuyenXe> chuyenXeList = AppDatabase.getInstance(context).getChuyenXeDAO().getChuyenXeByIdLoaiXe(loaiXe.getIdLoaiXe());
+            if(chuyenXeList == null || chuyenXeList.isEmpty()){
+                loaixes.remove(posiotion);
+                AppDatabase.getInstance(context).getLoaiXeDAO().delete(loaiXe);
+                notifyDataSetChanged(); // cập nhật giao diện sao khi xóa
+            } else  {
+                Toast.makeText(context, "Đang có khách hàng đặt vé xe của hãng này", Toast.LENGTH_SHORT).show();
+            }
+            dialogInterface.dismiss();
         });
         builder.setNegativeButton("Hủy", (dialogInterface, i) -> {
             // Đóng hộp thoại khi người dùng không đồng ý xóa

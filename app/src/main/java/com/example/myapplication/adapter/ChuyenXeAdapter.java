@@ -3,6 +3,7 @@ package com.example.myapplication.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -24,6 +26,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.config.AppDatabase;
 import com.example.myapplication.config.FunctionPublic;
 import com.example.myapplication.model.ChuyenXe;
+import com.example.myapplication.model.DatVe;
 import com.example.myapplication.view.DetailChuyenXeFragment;
 import com.example.myapplication.view.UpdateChuyenXeFragment;
 
@@ -97,10 +100,27 @@ public class ChuyenXeAdapter extends RecyclerView.Adapter<ChuyenXeAdapter.Chuyen
         builder.setTitle("Xác nhận xóa");
         builder.setMessage("Bạn có muốn xóa chuyến xe này?");
         builder.setPositiveButton("Đồng ý", (dialogInterface, i) -> {
-            chuyenXes.remove(position);
-            AppDatabase.getInstance(context).getChuyenXeDAO().delete(chuyenXe);
-            notifyDataSetChanged(); // Cập nhật giao diện sau khi xóa
+            List<Integer> listIdXe = new ArrayList<>();
+            List<DatVe> listVe1 = AppDatabase.getInstance(context).getVeXeDAO().getAll();
+            if(listVe1 == null || listVe1.isEmpty()){
 
+                chuyenXes.remove(position);
+                AppDatabase.getInstance(context).getChuyenXeDAO().delete(chuyenXe);
+                notifyDataSetChanged(); // Cập nhật giao diện sau khi xóa
+                dialogInterface.dismiss();
+            }
+            for (int j = 0;j < listVe1.size(); j++){
+                listIdXe.add(listVe1.get(j).getIdChuyenXeVeXe());
+            }
+            if(listIdXe.isEmpty()){
+                chuyenXes.remove(position);
+                AppDatabase.getInstance(context).getChuyenXeDAO().delete(chuyenXe);
+                notifyDataSetChanged(); // Cập nhật giao diện sau khi xóa
+            } else {
+                Toast.makeText(context, "Đang có khách hàng đặt vé xe của hãng này", Toast.LENGTH_SHORT).show();
+            }
+
+            dialogInterface.dismiss();
 
         });
         builder.setNegativeButton("Hủy", (dialogInterface, i) -> {

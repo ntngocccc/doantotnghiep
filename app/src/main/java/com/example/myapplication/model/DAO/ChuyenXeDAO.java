@@ -47,4 +47,7 @@ public interface ChuyenXeDAO {
 
     @Query("select * from table_chuyenxe where id_chuyen_xe = :id")
     ChuyenXe getChuyenXeById(int id);
+
+    @Query("select * from table_chuyenxe where id_loai_xe = :id")
+    List<ChuyenXe> getChuyenXeByIdLoaiXe(int id);
 }

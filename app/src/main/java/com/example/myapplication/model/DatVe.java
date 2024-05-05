@@ -51,7 +51,7 @@ public class DatVe  implements Serializable {
     public DatVe(int idThanhVienVeXe,int idChuyenXeVeXe, int soLuongVe, String ngayGioDat, String ngayGioDi, String ngayGioVe, String thongTinKhac, int idTrangThai) {
         SoLuongVeDaTaoSingleton soLuongVeDaTaoSingleton = SoLuongVeDaTaoSingleton.getInstance();
 
-        this.id = "VX" + soLuongVeDaTaoSingleton.getSoLuongVeDaTao();
+        this.id = "VX" + (soLuongVeDaTaoSingleton.getSoLuongVeDaTao()+1);
 
         // Tăng giá trị biến số lượng vé sau khi đã tạo mã vé
         soLuongVeDaTaoSingleton.tangSoLuongVeDaTao();
